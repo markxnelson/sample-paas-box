@@ -1,0 +1,21 @@
+# Copyright 2018, Oracle Corporation and/or its affiliates. All rights reserved.
+#
+# Sample PaaS box.
+
+box: 
+  id: oraclelinux
+  username: $REPO_USERNAME
+  password: $REPO_PASSWORD
+  tag: 7-slim
+
+build:
+  steps:
+    - script:
+      code: |
+        yum -y install git 
+    - internal/docker-push:
+      username: $REPO_USERNAME
+      password: $REPO_PASSWORD
+      registry: https://registry-1.docker.io/v2
+      repository: markxnelson/sample-paas-box
+      tag: latest
